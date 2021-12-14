@@ -22,11 +22,24 @@ const text = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
 ]
 
+
+
 for(i=0; i<items.length;i++){
     document.querySelector(".sy_left_image").innerHTML +=(`
         <img id="img${i+1}" class="w-100 h-100 sy-d-off" src="assets/img/0${i+1}.jpg">
     `);
 }
+const titleTextOutput= [];
+
+for(i=0; i<title.length;i++){
+    titleTextOutput.push(`
+    <h3 class="text-white me-5">${title[i]}</h1>
+    <p class="text-white text-end me-5">${text[i]}</p>
+    `)
+    
+}
+
+
 for(i=0; i<items.length;i++){
     document.querySelector(".sy_right_image").innerHTML +=(`
     <div id="imgthumb${i+1}" class="sy_thumb">
@@ -37,6 +50,7 @@ for(i=0; i<items.length;i++){
 
 document.getElementById("img1").classList.add("d-inline");
 document.getElementById("imgthumb1").classList.add("sy-active-thumb");
+document.getElementById("description").innerHTML = titleTextOutput[0]
 let cont=1;
 const prevPos= []; 
 
@@ -50,7 +64,8 @@ function prevImage(){
         document.getElementById(`img${prevPos.at(-1)}`).classList.remove("d-inline") 
         document.getElementById(`imgthumb${prevPos.at(-1)}`).classList.remove("sy-active-thumb")  
         document.getElementById(`img${cont}`).classList.add("d-inline")
-        document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb")  
+        document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb")
+        document.getElementById("description").innerHTML = titleTextOutput[cont-1]
 }
 document.getElementById("next").addEventListener("click",nextImage);
 function nextImage(){
@@ -63,4 +78,5 @@ function nextImage(){
     document.getElementById(`imgthumb${prevPos.at(-1)}`).classList.remove("sy-active-thumb")  
     document.getElementById(`img${cont}`).classList.add("d-inline")
     document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb") 
+    document.getElementById("description").innerHTML = titleTextOutput[cont-1]
 }

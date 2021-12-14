@@ -36,6 +36,7 @@ for(i=0; i<items.length;i++){
 }
 
 document.getElementById("img1").classList.add("d-inline");
+document.getElementById("imgthumb1").classList.add("sy-active-thumb");
 let cont=1;
 const prevPos= []; 
 
@@ -46,8 +47,10 @@ function prevImage(){
     if(cont<1){
         cont=5;
     }
-        document.getElementById(`img${prevPos.at(-1)}`).classList.remove("d-inline")  
+        document.getElementById(`img${prevPos.at(-1)}`).classList.remove("d-inline") 
+        document.getElementById(`imgthumb${prevPos.at(-1)}`).classList.remove("sy-active-thumb")  
         document.getElementById(`img${cont}`).classList.add("d-inline")
+        document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb")  
 }
 document.getElementById("next").addEventListener("click",nextImage);
 function nextImage(){
@@ -56,6 +59,8 @@ function nextImage(){
     if(cont>5){
         cont=1;
     }
-        document.getElementById(`img${prevPos.at(-1)}`).classList.remove("d-inline") 
-        document.getElementById(`img${cont}`).classList.add("d-inline")
+    document.getElementById(`img${prevPos.at(-1)}`).classList.remove("d-inline") 
+    document.getElementById(`imgthumb${prevPos.at(-1)}`).classList.remove("sy-active-thumb")  
+    document.getElementById(`img${cont}`).classList.add("d-inline")
+    document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb") 
 }

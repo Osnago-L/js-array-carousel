@@ -28,6 +28,11 @@ for(i=0; i<items.length;i++){
     document.querySelector(".sy_left_image").innerHTML +=(`
         <img id="img${i+1}" class="w-100 h-100 sy-d-off" src="assets/img/0${i+1}.jpg">
     `);
+    document.querySelector(".sy_right_image").innerHTML +=(`
+    <div id="imgthumb${i+1}" class="sy_thumb">
+        <img class="sy_image_contain" src="assets/img/0${i+1}.jpg" alt="">
+    </div>
+    `);
 }
 const titleTextOutput= [];
 
@@ -39,24 +44,17 @@ for(i=0; i<title.length;i++){
     
 }
 
-
-for(i=0; i<items.length;i++){
-    document.querySelector(".sy_right_image").innerHTML +=(`
-    <div id="imgthumb${i+1}" class="sy_thumb">
-        <img class="sy_image_contain" src="assets/img/0${i+1}.jpg" alt="">
-    </div>
-    `);
-}
-
-document.getElementById("img1").classList.add("d-inline");
-document.getElementById("imgthumb1").classList.add("sy-active-thumb");
-document.getElementById("description").innerHTML = titleTextOutput[0]
 let cont=1;
+document.getElementById(`img${cont}`).classList.add("d-inline");
+document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb");
+document.getElementById("description").innerHTML = titleTextOutput[cont-1]
+
 const prevPos= []; 
 
 document.getElementById("prev").addEventListener("click",prevImage);
 function prevImage(){
     prevPos.push(cont)
+    console.log(prevPos.at(-1))
     cont--;
     if(cont<1){
         cont=5;
@@ -70,6 +68,7 @@ function prevImage(){
 document.getElementById("next").addEventListener("click",nextImage);
 function nextImage(){
     prevPos.push(cont)
+    console.log(prevPos.at(-1))
     cont++;
     if(cont>5){
         cont=1;

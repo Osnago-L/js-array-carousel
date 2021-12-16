@@ -23,7 +23,6 @@ const text = [
 ]
 
 
-
 for(i=0; i<items.length;i++){
     document.querySelector(".sy_left_image").innerHTML +=(`
         <img id="img${i+1}" class="w-100 h-100 sy-d-off" src="assets/img/0${i+1}.jpg">
@@ -41,40 +40,36 @@ for(i=0; i<title.length;i++){
     <h3 class="text-white me-5">${title[i]}</h1>
     <p class="text-white text-end me-5">${text[i]}</p>
     `)
-    
 }
 
 let cont=1;
+let prevPos= 0; 
 document.getElementById(`img${cont}`).classList.add("d-inline");
 document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb");
 document.getElementById("description").innerHTML = titleTextOutput[cont-1]
 
-const prevPos= []; 
-
 document.getElementById("prev").addEventListener("click",prevImage);
 function prevImage(){
-    prevPos.push(cont)
-    console.log(prevPos.at(-1))
+    prevPos=cont;
     cont--;
     if(cont<1){
         cont=5;
     }
-        document.getElementById(`img${prevPos.at(-1)}`).classList.remove("d-inline") 
-        document.getElementById(`imgthumb${prevPos.at(-1)}`).classList.remove("sy-active-thumb")  
+        document.getElementById(`img${prevPos}`).classList.remove("d-inline") 
+        document.getElementById(`imgthumb${prevPos}`).classList.remove("sy-active-thumb")  
         document.getElementById(`img${cont}`).classList.add("d-inline")
         document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb")
         document.getElementById("description").innerHTML = titleTextOutput[cont-1]
 }
 document.getElementById("next").addEventListener("click",nextImage);
 function nextImage(){
-    prevPos.push(cont)
-    console.log(prevPos.at(-1))
+    prevPos=cont;
     cont++;
     if(cont>5){
         cont=1;
     }
-    document.getElementById(`img${prevPos.at(-1)}`).classList.remove("d-inline") 
-    document.getElementById(`imgthumb${prevPos.at(-1)}`).classList.remove("sy-active-thumb")  
+    document.getElementById(`img${prevPos}`).classList.remove("d-inline") 
+    document.getElementById(`imgthumb${prevPos}`).classList.remove("sy-active-thumb")  
     document.getElementById(`img${cont}`).classList.add("d-inline")
     document.getElementById(`imgthumb${cont}`).classList.add("sy-active-thumb") 
     document.getElementById("description").innerHTML = titleTextOutput[cont-1]
